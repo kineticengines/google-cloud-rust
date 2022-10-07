@@ -15,7 +15,7 @@ use google_cloud_googleapis::pubsub::v1::{
 };
 
 #[derive(Clone, Debug)]
-pub(crate) struct PublisherClient {
+pub struct PublisherClient {
     cm: Arc<ConnectionManager>,
 }
 

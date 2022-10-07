@@ -28,7 +28,7 @@ pub(crate) enum Reserved {
     Multi(Vec<ReservedMessage>),
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct PublisherConfig {
     /// worker count. each workers have gRPC channel
     pub workers: usize,
@@ -49,6 +49,7 @@ impl Default for PublisherConfig {
         }
     }
 }
+
 
 pub struct Awaiter {
     consumer: oneshot::Receiver<Result<String, Status>>,
@@ -90,7 +91,7 @@ pub struct Publisher {
 }
 
 impl Publisher {
-    pub(crate) fn new(fqtn: String, pubc: PublisherClient, config: Option<PublisherConfig>) -> Self {
+    pub fn new(fqtn: String, pubc: PublisherClient, config: Option<PublisherConfig>) -> Self {
         let config = config.unwrap_or_default();
         let (sender, receiver) = async_channel::unbounded::<Reserved>();
         let mut receivers = Vec::with_capacity(1 + config.workers);

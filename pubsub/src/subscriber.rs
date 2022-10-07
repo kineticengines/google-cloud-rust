@@ -14,6 +14,7 @@ use tokio::time::sleep;
 
 use crate::apiv1::subscriber_client::{create_empty_streaming_pull_request, SubscriberClient};
 
+#[derive(Debug, Clone)]
 pub struct ReceivedMessage {
     pub message: PubsubMessage,
     ack_id: String,

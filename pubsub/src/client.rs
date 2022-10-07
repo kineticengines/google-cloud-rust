@@ -1,5 +1,6 @@
 use crate::apiv1::conn_pool::{ConnectionManager, PUBSUB};
 use crate::apiv1::publisher_client::PublisherClient;
+use crate::apiv1::schema_client::SchemaClient;
 use crate::apiv1::subscriber_client::SubscriberClient;
 use google_cloud_auth::Project;
 use google_cloud_gax::cancel::CancellationToken;
@@ -66,6 +67,7 @@ pub struct Client {
     project_id: String,
     pubc: PublisherClient,
     subc: SubscriberClient,
+    schema: SchemaClient,
 }
 
 impl Client {
@@ -85,6 +87,8 @@ impl Client {
         let subc =
             SubscriberClient::new(ConnectionManager::new(pool_size, &environment, config.endpoint.as_str()).await?);
 
+        let schema = SchemaClient::new(ConnectionManager::new(pool_size, &environment, config.endpoint.as_str()).await?);
+
         let project_id = match config.project_id {
             Some(project_id) => project_id,
             None => match environment {
@@ -92,8 +96,7 @@ impl Client {
                 Environment::Emulator(_) => "local-project".to_string(),
             },
         };
-
-        Ok(Self { project_id, pubc, subc })
+        Ok(Self { project_id, pubc, subc,schema })
     }
 
     /// create_subscription creates a new subscription on a topic.
@@ -252,6 +255,20 @@ impl Client {
     fn fully_qualified_project_name(&self) -> String {
         format!("projects/{}", self.project_id)
     }
+
+
+    pub fn schema_client(&self) -> &SchemaClient {
+        &self.schema
+    }
+
+    pub fn subscriber_client(&self) -> &SubscriberClient{
+        &&self.subc
+    }
+
+    pub fn publisher_client(&self) -> &PublisherClient{
+        &self.pubc
+    }
+
 }
 
 #[cfg(test)]

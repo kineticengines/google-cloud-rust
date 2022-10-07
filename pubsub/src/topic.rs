@@ -16,6 +16,7 @@ use google_cloud_googleapis::pubsub::v1::{
     Topic as InternalTopic,
 };
 
+#[derive(Debug, Clone)]
 pub struct TopicConfig {
     pub labels: HashMap<String, String>,
     pub message_storage_policy: Option<MessageStoragePolicy>,
@@ -41,7 +42,7 @@ impl Default for TopicConfig {
 /// Topic is a reference to a PubSub topic.
 ///
 /// The methods of Topic are safe for use by multiple tasks.
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Topic {
     fqtn: String,
     pubc: PublisherClient,

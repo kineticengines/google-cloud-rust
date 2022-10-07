@@ -38,6 +38,8 @@ pub struct SubscriptionConfig {
     pub bigquery_config: Option<BigQueryConfig>,
     pub state: i32,
 }
+
+
 impl From<InternalSubscription> for SubscriptionConfig {
     fn from(f: InternalSubscription) -> Self {
         Self {
@@ -128,12 +130,12 @@ impl Stream for MessageStream {
 /// Subscription is a reference to a PubSub subscription.
 #[derive(Clone, Debug)]
 pub struct Subscription {
-    fqsn: String,
-    subc: SubscriberClient,
+    pub fqsn: String,
+    pub subc: SubscriberClient,
 }
 
 impl Subscription {
-    pub(crate) fn new(fqsn: String, subc: SubscriberClient) -> Self {
+    pub fn new(fqsn: String, subc: SubscriberClient) -> Self {
         Self { fqsn, subc }
     }
 
