@@ -18,7 +18,7 @@ use crate::apiv1::subscriber_client::{create_empty_streaming_pull_request, Subsc
 pub struct ReceivedMessage {
     pub message: PubsubMessage,
     ack_id: String,
-    subscription: String,
+    pub subscription: String,
     subscriber_client: SubscriberClient,
 }
 
