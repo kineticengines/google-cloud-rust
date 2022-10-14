@@ -42,7 +42,7 @@ ctor = "0.1.22"
 tokio-util =  {version ="0.7", features = ["codec"] }
 
 [features]
-default = ["default-tls"]
+default = ["rustls-tls"]
 default-tls = ["reqwest/default-tls", "google-cloud-auth/default-tls", "google-cloud-metadata/default-tls"]
 rustls-tls = ["reqwest/rustls-tls", "google-cloud-auth/rustls-tls", "google-cloud-metadata/rustls-tls"]
 trace = []

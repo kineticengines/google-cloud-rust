@@ -22,6 +22,6 @@ tokio-retry = "0.3"
 
 
 [features]
-default = ["default-tls"]
+default = ["rustls-tls"]
 default-tls = ["google-cloud-auth/default-tls"]
 rustls-tls = ["google-cloud-auth/rustls-tls"]

@@ -31,6 +31,6 @@ ctor = "0.1"
 serial_test = "0.9"
 
 [features]
-default = ["default-tls"]
+default = ["rustls-tls"]
 default-tls = ["reqwest/default-tls", "google-cloud-metadata/default-tls"]
 rustls-tls = ["reqwest/rustls-tls", "google-cloud-metadata/rustls-tls"]

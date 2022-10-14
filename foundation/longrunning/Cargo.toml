@@ -16,6 +16,6 @@ tonic = { version = "0.8", features = ["tls", "prost"] }
 prost = "0.11"
 
 [features]
-default = ["default-tls"]
+default = ["rustls-tls"]
 default-tls = ["google-cloud-gax/default-tls"]
 rustls-tls = ["google-cloud-gax/rustls-tls"]

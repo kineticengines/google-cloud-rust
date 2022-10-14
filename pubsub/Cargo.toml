@@ -34,7 +34,7 @@ ctor = "0.1.21"
 futures-util = "0.3"
 
 [features]
-default = ["default-tls"]
+default = ["rustls-tls"]
 default-tls = ["google-cloud-auth/default-tls", "google-cloud-gax/default-tls"]
 rustls-tls = ["google-cloud-auth/rustls-tls", "google-cloud-gax/rustls-tls"]
 trace = []
